@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UNI-AI Store</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">UNI</a>
+  <ul class="nav-links">
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#ai-section">AI Stylist</a></li>
+    <li><a href="#">Collections</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-label">New Collection — SS 2025</div>
+    <h1>Where Style Meets Intelligence</h1>
+    <p>Discover curated fashion powered by AI. Get personalized recommendations, style advice, and find pieces made for you.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <button class="btn-outline" onclick="document.getElementById('ai-section').scrollIntoView({behavior:'smooth'})">Ask AI Stylist</button>
+    </div>
+  </div>
+  <div class="hero-image-grid">
+    <div class="hero-img-box">👜</div>
+    <div class="hero-img-box" style="margin-top:-40px">👗</div>
+    <div class="hero-img-box">🧥</div>
+    <div class="hero-img-box" style="margin-top:-40px">👠</div>
+  </div>
+</div>
+
+<section id="products" style="background: var(--white);">
+  <div class="section-header">
+    <h2 class="section-title">Featured Products</h2>
+    <a class="section-link">View All →</a>
+  </div>
+  <div class="filters" id="filters">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('bags', this)">Bags</button>
+    <button class="filter-btn" onclick="filterProducts('clothing', this)">Clothing</button>
+    <button class="filter-btn" onclick="filterProducts('shoes', this)">Shoes</button>
+    <button class="filter-btn" onclick="filterProducts('accessories', this)">Accessories</button>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<div class="ai-section" id="ai-section">
+  <div class="ai-inner">
+    <div class="ai-label">Powered by Claude AI</div>
+    <h2 class="ai-title">Your Personal AI Stylist</h2>
+    <p class="ai-subtitle">Ask anything — outfit ideas, what's trending, gift advice, styling tips. Get instant expert guidance.</p>
+    <div class="ai-chips">
+      <span class="ai-chip" onclick="setPrompt('What should I wear to a summer wedding?')">Summer wedding outfit</span>
+      <span class="ai-chip" onclick="setPrompt('Recommend a gift for a fashion lover under $200')">Gift ideas</span>
+      <span class="ai-chip" onclick="setPrompt('What are the top fashion trends this season?')">Season trends</span>
+      <span class="ai-chip" onclick="setPrompt('How do I style a classic white shirt?')">Style tips</span>
+    </div>
+    <div class="ai-input-row">
+      <input type="text" id="ai-input" placeholder="Ask your AI stylist anything..." onkeydown="if(event.key==='Enter') askAI()"/>
+      <button id="ai-ask-btn" onclick="askAI()">Ask Stylist</button>
+    </div>
+    <div class="ai-response" id="ai-response">
+      <div class="ai-response-header">
+        <div class="ai-dot"></div>
+        <span class="ai-response-label">AI Stylist</span>
+      </div>
+      <div id="ai-response-text"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; letter-spacing:4px; color:rgba(250,249,246,0.9); margin-bottom:16px;">LUXE</div>
+  © 2025 UNI Store — Built with <span>Brodreina</span>
+</footer>
+
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button class="close-cart" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">Your cart is empty.</div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cart-total-price">$0</span>
+    </div>
+    <button class="checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
