@@ -143,4 +143,6 @@ async function askAI() {
   input.value = '';
 }
 
+
+
 renderProducts('all');
